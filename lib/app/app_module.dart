@@ -1,3 +1,4 @@
+import 'package:catalogo_auth_flutter/app/modules/catalog/catalog_module.dart';
 import 'package:catalogo_auth_flutter/app/modules/home/home_module.dart';
 import 'package:catalogo_auth_flutter/app/modules/login/login_module.dart';
 import 'app_controller.dart';
@@ -15,6 +16,7 @@ class AppModule extends MainModule {
   List<Router> get routers => [
     Router(Modular.initialRoute, module: HomeModule()),
     Router('/login', module: LoginModule()),
+    Router('/catalog', module: CatalogModule()),
   ];
 
   @override

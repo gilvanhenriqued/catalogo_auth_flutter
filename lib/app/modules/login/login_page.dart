@@ -130,6 +130,12 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
     String password = _ctrlPassword.text;
 
     print("login: $login ||| senha: $password");
+
+    _navigateToCatalog();
+  }
+
+  _navigateToCatalog() {
+    Modular.to.pushNamed('/catalog');
   }
 
 }
