@@ -1,18 +1,34 @@
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:dio/native_imp.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
-class LoginRepository extends Disposable {
-  final DioForNative client;
+class LoginRepository {
 
-  LoginRepository(this.client);
+  var urlBaseLogin = 'https://www.macoratti.net.br/catalogo/api/contas/login';
+  
+  // Request to login
+  Future<String> login(String user, String password) async {
 
-  Future fetchPost() async {
-    final response =
-        await client.get('https://jsonplaceholder.typicode.com/posts/1');
-    return response.data;
+    var headerRequest = {"Content-Type": "application/json"};
+
+    Map bodyRequest = {
+      "username": user,
+      "senha": password,
+      "email": user
+    };
+
+    var _bodyJson = json.encode(bodyRequest);
+
+    var response = await http.post(
+      urlBaseLogin, 
+      headers: headerRequest, 
+      body: _bodyJson
+    );
+  
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+    return response.statusCode.toString();
+
   }
 
-  //dispose will be called automatically
-  @override
-  void dispose() {}
 }

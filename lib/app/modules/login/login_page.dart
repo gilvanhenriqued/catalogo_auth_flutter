@@ -1,3 +1,4 @@
+import 'package:catalogo_auth_flutter/app/modules/login/login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -12,6 +13,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends ModularState<LoginPage, LoginController> {
+
+  final loginController = Modular.get<LoginController>();
 
   final _ctrlLogin = TextEditingController();
   final _ctrlPassword = TextEditingController();
@@ -119,7 +122,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
     );
   }
 
-  _clickButton(BuildContext context) {
+  _clickButton(BuildContext context) async {
     bool isFormValidated = _formKey.currentState.validate();
 
     if(!isFormValidated) {
@@ -131,10 +134,13 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
 
     print("login: $login ||| senha: $password");
 
-    _navigateToCatalog();
+    var response = await loginController.attemptLogin(login, password);
+
+    if(response == "200") _navigateToCatalog(context);
+
   }
 
-  _navigateToCatalog() {
+  _navigateToCatalog(BuildContext context) {
     Modular.to.pushNamed('/catalog');
   }
 

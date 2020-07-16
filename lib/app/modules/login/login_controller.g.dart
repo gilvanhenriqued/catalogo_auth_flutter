@@ -9,39 +9,50 @@ part of 'login_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LoginController on _LoginControllerBase, Store {
-  final _$valueAtom = Atom(name: '_LoginControllerBase.value');
+  final _$loginAtom = Atom(name: '_LoginControllerBase.login');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  String get login {
+    _$loginAtom.reportRead();
+    return super.login;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set login(String value) {
+    _$loginAtom.reportWrite(value, super.login, () {
+      super.login = value;
     });
   }
 
-  final _$_LoginControllerBaseActionController =
-      ActionController(name: '_LoginControllerBase');
+  final _$passwordAtom = Atom(name: '_LoginControllerBase.password');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
-        name: '_LoginControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
-    }
+  String get password {
+    _$passwordAtom.reportRead();
+    return super.password;
+  }
+
+  @override
+  set password(String value) {
+    _$passwordAtom.reportWrite(value, super.password, () {
+      super.password = value;
+    });
+  }
+
+  final _$attemptLoginAsyncAction =
+      AsyncAction('_LoginControllerBase.attemptLogin');
+
+  @override
+  Future attemptLogin(String login, String password) {
+    return _$attemptLoginAsyncAction
+        .run(() => super.attemptLogin(login, password));
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+login: ${login},
+password: ${password}
     ''';
   }
 }
