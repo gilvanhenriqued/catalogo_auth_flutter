@@ -1,6 +1,6 @@
-# catalogo_auth_flutter
+# Catálogo com autenticação Flutter
 
-A new Flutter project. Created by Slidy
+Aplicação Flutter que realiza autenticação em uma API de testes para acessar um catalogo de produtos com Flutter Modular e MobX.
 
 ## Getting Started
 

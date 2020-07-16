@@ -1,6 +1,6 @@
 name: catalogo_auth_flutter
 description: A new Flutter project. Created by Slidy
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
