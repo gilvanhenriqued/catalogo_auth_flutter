@@ -19,8 +19,8 @@ abstract class _LoginControllerBase with Store {
 
   @action
   attemptLogin(String login, String password) async {
-    var res = await repository.login(login, password);
-    return res;
+    var response = await repository.login(login, password);
+    return response;
   }
 
 }

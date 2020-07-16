@@ -27,6 +27,12 @@ class LoginRepository {
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
 
+    Map mapResponse = json.decode(response.body);
+
+    String token = mapResponse["token"];
+
+    print('Token: $token');
+
     return response.statusCode.toString();
 
   }

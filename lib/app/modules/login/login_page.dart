@@ -136,7 +136,11 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
 
     var response = await loginController.attemptLogin(login, password);
 
-    if(response == "200") _navigateToCatalog(context);
+    if(response == "200") {
+      _navigateToCatalog(context);
+    } else {
+      // show dialog or alert invalid login 
+    }
 
   }
 
