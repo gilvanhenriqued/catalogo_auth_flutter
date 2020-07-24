@@ -21,4 +21,9 @@ class User {
     data['message'] = this.message;
     return data;
   }
+
+  String toString() {
+    return "user -> message: $message, token: $token";
+  }
+
 }

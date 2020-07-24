@@ -12,14 +12,14 @@ abstract class _LoginControllerBase with Store {
   _LoginControllerBase(this.repository);
 
   @observable
-  String login;
+  String username;
 
   @observable
   String password;
 
   @action
-  attemptLogin(String login, String password) async {
-    var response = await repository.login(login, password);
+  attemptLogin(String username, String password) async {
+    var response = await repository.attemptLoginAPI(username, password);
     return response;
   }
 

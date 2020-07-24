@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:catalogo_auth_flutter/app/models/user.dart';
 import 'package:http/http.dart' as http;
 
 class LoginRepository {
@@ -6,14 +7,14 @@ class LoginRepository {
   var urlBaseLogin = 'https://www.macoratti.net.br/catalogo/api/contas/login';
   
   // Request to login
-  Future<String> login(String user, String password) async {
+  Future<User> attemptLoginAPI(String username, String password) async {
 
     var headerRequest = {"Content-Type": "application/json"};
 
     Map bodyRequest = {
-      "username": user,
+      "username": username,
       "senha": password,
-      "email": user
+      "email": username
     };
 
     var _bodyJson = json.encode(bodyRequest);
@@ -25,15 +26,12 @@ class LoginRepository {
     );
   
     print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
 
     Map mapResponse = json.decode(response.body);
 
-    String token = mapResponse["token"];
+    final user = User.fromJson(mapResponse);
 
-    print('Token: $token');
-
-    return token;
+    return user;
 
   }
 

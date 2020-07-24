@@ -1,3 +1,4 @@
+import 'package:catalogo_auth_flutter/app/modules/login/pages/alert_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -128,23 +129,17 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
       return ;
     }
 
-    String login = _ctrlLogin.text;
+    String username = _ctrlLogin.text;
     String password = _ctrlPassword.text;
 
-    print("login: $login ||| senha: $password");
+    print("login: $username ||| senha: $password");
 
-    var response = await loginController.attemptLogin(login, password);
+    var user = await loginController.attemptLogin(username, password);
 
-    if(response != null) {
-      _navigateToCatalog(context, response);
+    if(user != null) {
+      _navigateToCatalog(context, user);
     } else {
-      return showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: Text('Que pena!'),
-          content: Text('Sua tentativa de login falhou! Verifique sua conexão com a internet ou se a senha informada está correta.'),
-        ),
-     );
+      alert(context, 'Sua tentativa de login falhou! Verifique sua conexão com a internet ou se a senha informada está correta.');
     }
 
   }

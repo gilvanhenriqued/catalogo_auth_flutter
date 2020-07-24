@@ -9,18 +9,18 @@ part of 'login_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LoginController on _LoginControllerBase, Store {
-  final _$loginAtom = Atom(name: '_LoginControllerBase.login');
+  final _$usernameAtom = Atom(name: '_LoginControllerBase.username');
 
   @override
-  String get login {
-    _$loginAtom.reportRead();
-    return super.login;
+  String get username {
+    _$usernameAtom.reportRead();
+    return super.username;
   }
 
   @override
-  set login(String value) {
-    _$loginAtom.reportWrite(value, super.login, () {
-      super.login = value;
+  set username(String value) {
+    _$usernameAtom.reportWrite(value, super.username, () {
+      super.username = value;
     });
   }
 
@@ -43,15 +43,15 @@ mixin _$LoginController on _LoginControllerBase, Store {
       AsyncAction('_LoginControllerBase.attemptLogin');
 
   @override
-  Future attemptLogin(String login, String password) {
+  Future attemptLogin(String username, String password) {
     return _$attemptLoginAsyncAction
-        .run(() => super.attemptLogin(login, password));
+        .run(() => super.attemptLogin(username, password));
   }
 
   @override
   String toString() {
     return '''
-login: ${login},
+username: ${username},
 password: ${password}
     ''';
   }
