@@ -136,8 +136,8 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
 
     var response = await loginController.attemptLogin(login, password);
 
-    if(response == "200") {
-      _navigateToCatalog(context);
+    if(response != "") {
+      _navigateToCatalog(context, response);
     } else {
       return showDialog<String>(
         context: context,
@@ -150,7 +150,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
 
   }
 
-  _navigateToCatalog(BuildContext context) {
+  _navigateToCatalog(BuildContext context, String token) {
     Modular.to.pushNamed('/catalog');
   }
 
