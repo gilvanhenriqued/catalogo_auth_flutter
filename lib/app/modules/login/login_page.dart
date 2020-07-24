@@ -147,6 +147,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
   }
 
   _navigateToCatalog(BuildContext context, User user) {
+
+    //TODO: pass and send the token to catalog page. 
+
     Modular.to.pushNamed('/catalog');
   }
 

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 class LoginRepository {
 
-  var urlBaseLogin = 'https://www.macoratti.net.br/catalogo/api/contas/login';
+  final String urlBaseLogin = 'https://www.macoratti.net.br/catalogo/api/contas/login';
   
   // Request to login
   Future<User> attemptLoginAPI(String username, String password) async {
@@ -25,12 +25,12 @@ class LoginRepository {
       body: _bodyJson
     );
 
-    var user;
+    User user;
   
     // handling and sending datas to UI
     print('Response status: ${response.statusCode}');
 
-    Map mapResponse = json.decode(response.body);
+    var mapResponse = json.decode(response.body);
 
     if(response.statusCode == 200) {
       user = User.fromJson(mapResponse);
