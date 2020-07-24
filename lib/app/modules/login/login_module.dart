@@ -1,5 +1,3 @@
-import 'package:catalogo_auth_flutter/app/modules/catalog/catalog_module.dart';
-
 import 'login_repository.dart';
 import 'login_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';

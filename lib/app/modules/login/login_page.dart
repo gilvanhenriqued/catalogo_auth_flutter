@@ -1,4 +1,3 @@
-import 'package:catalogo_auth_flutter/app/modules/login/login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -136,7 +135,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
 
     var response = await loginController.attemptLogin(login, password);
 
-    if(response != "") {
+    if(response != null) {
       _navigateToCatalog(context, response);
     } else {
       return showDialog<String>(
