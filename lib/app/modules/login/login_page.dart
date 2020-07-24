@@ -1,3 +1,4 @@
+import 'package:catalogo_auth_flutter/app/models/user.dart';
 import 'package:catalogo_auth_flutter/app/modules/login/pages/alert_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -137,6 +138,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
     var user = await loginController.attemptLogin(username, password);
 
     if(user != null) {
+      print("received user of api: $user");
       _navigateToCatalog(context, user);
     } else {
       alert(context, 'Sua tentativa de login falhou! Verifique sua conexão com a internet ou se a senha informada está correta.');
@@ -144,7 +146,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
 
   }
 
-  _navigateToCatalog(BuildContext context, String token) {
+  _navigateToCatalog(BuildContext context, User user) {
     Modular.to.pushNamed('/catalog');
   }
 

@@ -8,7 +8,7 @@ class LoginRepository {
   
   // Request to login
   Future<User> attemptLoginAPI(String username, String password) async {
-
+    // GET request
     var headerRequest = {"Content-Type": "application/json"};
 
     Map bodyRequest = {
@@ -24,15 +24,21 @@ class LoginRepository {
       headers: headerRequest, 
       body: _bodyJson
     );
+
+    var user;
   
+    // handling and sending datas to UI
     print('Response status: ${response.statusCode}');
 
     Map mapResponse = json.decode(response.body);
 
-    final user = User.fromJson(mapResponse);
-
-    return user;
-
+    if(response.statusCode == 200) {
+      user = User.fromJson(mapResponse);
+      return user;
+    } else {
+      return user;
+    }
+    
   }
 
 }
