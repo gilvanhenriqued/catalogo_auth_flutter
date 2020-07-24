@@ -139,7 +139,13 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
     if(response == "200") {
       _navigateToCatalog(context);
     } else {
-      // show dialog or alert invalid login 
+      return showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: Text('Que pena!'),
+          content: Text('Sua tentativa de login falhou! Verifique sua conexão com a internet ou se a senha informada está correta.'),
+        ),
+     );
     }
 
   }
