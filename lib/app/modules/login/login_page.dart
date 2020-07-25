@@ -138,7 +138,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
     var user = await loginController.attemptLogin(username, password);
 
     if(user != null) {
-      print("received user of api: $user");
+      print("received user of api: ${user.token}");
       _navigateToCatalog(context, user);
     } else {
       alert(context, 'Sua tentativa de login falhou! Verifique sua conexão com a internet ou se a senha informada está correta.');
@@ -147,10 +147,8 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
   }
 
   _navigateToCatalog(BuildContext context, User user) {
-
-    //TODO: pass and send the token to catalog page. 
-
-    Modular.to.pushNamed('/catalog');
+    Modular.to.pushNamed('/catalog',
+      arguments: user);
   }
 
 }

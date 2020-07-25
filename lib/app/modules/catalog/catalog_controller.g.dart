@@ -9,39 +9,25 @@ part of 'catalog_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$CatalogController on _CatalogControllerBase, Store {
-  final _$valueAtom = Atom(name: '_CatalogControllerBase.value');
+  final _$userAtom = Atom(name: '_CatalogControllerBase.user');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  User get user {
+    _$userAtom.reportRead();
+    return super.user;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set user(User value) {
+    _$userAtom.reportWrite(value, super.user, () {
+      super.user = value;
     });
-  }
-
-  final _$_CatalogControllerBaseActionController =
-      ActionController(name: '_CatalogControllerBase');
-
-  @override
-  void increment() {
-    final _$actionInfo = _$_CatalogControllerBaseActionController.startAction(
-        name: '_CatalogControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_CatalogControllerBaseActionController.endAction(_$actionInfo);
-    }
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+user: ${user}
     ''';
   }
 }

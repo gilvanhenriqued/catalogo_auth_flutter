@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'catalog_page.dart';
 
 class CatalogModule extends ChildModule {
+
   @override
   List<Bind> get binds => [
     Bind((i) => CatalogRepository(Dio())),
@@ -13,7 +14,7 @@ class CatalogModule extends ChildModule {
 
   @override
   List<Router> get routers => [
-    Router(Modular.initialRoute, child: (_, args) => CatalogPage()),
+    Router(Modular.initialRoute, child: (_, args) => CatalogPage(user: args.data)),
   ];
 
   static Inject get to => Inject<CatalogModule>.of();

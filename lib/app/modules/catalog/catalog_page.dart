@@ -1,10 +1,14 @@
+import 'package:catalogo_auth_flutter/app/models/user.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'catalog_controller.dart';
 
 class CatalogPage extends StatefulWidget {
   final String title;
-  const CatalogPage({Key key, this.title = "Catálogo"}) : super(key: key);
+  final User user;
+
+  const CatalogPage({Key key, this.title = "Catálogo", this.user}) : super(key: key);
 
   @override
   _CatalogPageState createState() => _CatalogPageState();
@@ -24,11 +28,18 @@ class _CatalogPageState extends ModularState<CatalogPage, CatalogController> {
   }
 
   _body(){
-    return Center(
-      child: Text(
-        "Lista de Produtos",
-        style: TextStyle(fontSize: 20),
-      )
+    return Observer(
+      builder: (_) {
+        final catalogController = Modular.get<CatalogController>();
+        catalogController.user = widget.user;
+
+        return Center(
+          child: Text(
+            "Lista de Produtos de ${catalogController.user}",
+            style: TextStyle(fontSize: 20),
+          )
+        ); 
+      }
     );
   }
 
