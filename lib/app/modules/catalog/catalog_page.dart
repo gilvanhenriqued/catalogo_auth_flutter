@@ -33,12 +33,38 @@ class _CatalogPageState extends ModularState<CatalogPage, CatalogController> {
         final catalogController = Modular.get<CatalogController>();
         catalogController.user = widget.user;
 
-        return Center(
-          child: Text(
-            "Lista de Produtos de ${catalogController.user}",
-            style: TextStyle(fontSize: 20),
-          )
-        ); 
+        final productList = catalogController.productList;
+
+        if(productList == null){
+          return Center(child: CircularProgressIndicator());
+        }
+
+        return ListView.builder(
+          itemCount: productList.length,
+          padding: EdgeInsets.all(8),
+          itemBuilder: (context, index) {
+            return Column(
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    productList[index].nome,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: Text(
+                    "R\$ " + productList[index].preco.toString(),
+                    style: TextStyle(),                      
+                  ),
+                  leading: CircleAvatar(
+                    child: Image.network(productList[index].imagemUrl)
+                  ),
+                ),
+                Divider(),
+              ],
+            );
+          },
+        );
       }
     );
   }

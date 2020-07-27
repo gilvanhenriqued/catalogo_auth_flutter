@@ -1,4 +1,4 @@
-class Produto {
+class Product {
   int produtoId;
   String nome;
   String descricao;
@@ -6,7 +6,7 @@ class Produto {
   bool ativo;
   String imagemUrl;
 
-  Produto(
+  Product(
       {this.produtoId,
       this.nome,
       this.descricao,
@@ -14,7 +14,7 @@ class Produto {
       this.ativo,
       this.imagemUrl});
 
-  Produto.fromJson(Map<String, dynamic> json) {
+  Product.fromJson(Map<String, dynamic> json) {
     produtoId = json['produtoId'];
     nome = json['nome'];
     descricao = json['descricao'];

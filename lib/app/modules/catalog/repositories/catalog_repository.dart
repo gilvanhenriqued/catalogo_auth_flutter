@@ -1,18 +1,29 @@
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:dio/native_imp.dart';
+import 'dart:convert';
 
-class CatalogRepository extends Disposable {
-  final DioForNative client;
+import 'package:http/http.dart' as http;
+import 'package:catalogo_auth_flutter/app/models/product.dart';
 
-  CatalogRepository(this.client);
+class CatalogRepository {
 
-  Future fetchPost() async {
-    final response =
-        await client.get('https://jsonplaceholder.typicode.com/posts/1');
-    return response.data;
+  final String urlBaseProducts = 'https://www.macoratti.net.br/catalogo/api/produtos/v2/todos';
+
+  // GET products
+  Future<List<Product>> getAllProducts() async {
+    final products = List<Product>();
+
+    var response = await http.get(urlBaseProducts);
+
+    var mapResponse = json.decode(response.body);
+
+
+    if(response.statusCode == 200) {
+      mapResponse.forEach((item) => products.add(Product.fromJson(item)));
+      return products;
+    } else {
+      print('erro no carregamento da lista' + response.statusCode.toString());
+      return null;
+    }
+
   }
 
-  //dispose will be called automatically
-  @override
-  void dispose() {}
 }

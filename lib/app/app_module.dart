@@ -1,5 +1,4 @@
 import 'package:catalogo_auth_flutter/app/modules/catalog/catalog_module.dart';
-import 'package:catalogo_auth_flutter/app/modules/catalog/catalog_page.dart';
 import 'package:catalogo_auth_flutter/app/modules/home/home_module.dart';
 import 'package:catalogo_auth_flutter/app/modules/login/login_module.dart';
 import 'app_controller.dart';

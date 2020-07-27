@@ -24,10 +24,34 @@ mixin _$CatalogController on _CatalogControllerBase, Store {
     });
   }
 
+  final _$productListAtom = Atom(name: '_CatalogControllerBase.productList');
+
+  @override
+  ObservableList<Product> get productList {
+    _$productListAtom.reportRead();
+    return super.productList;
+  }
+
+  @override
+  set productList(ObservableList<Product> value) {
+    _$productListAtom.reportWrite(value, super.productList, () {
+      super.productList = value;
+    });
+  }
+
+  final _$loadProductsAsyncAction =
+      AsyncAction('_CatalogControllerBase.loadProducts');
+
+  @override
+  Future loadProducts() {
+    return _$loadProductsAsyncAction.run(() => super.loadProducts());
+  }
+
   @override
   String toString() {
     return '''
-user: ${user}
+user: ${user},
+productList: ${productList}
     ''';
   }
 }

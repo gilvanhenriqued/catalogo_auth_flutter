@@ -1,15 +1,14 @@
 import 'repositories/catalog_repository.dart';
 import 'catalog_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:dio/dio.dart';
 import 'catalog_page.dart';
 
 class CatalogModule extends ChildModule {
 
   @override
   List<Bind> get binds => [
-    Bind((i) => CatalogRepository(Dio())),
-    Bind((i) => CatalogController()),
+    Bind((i) => CatalogRepository()),
+    Bind((i) => CatalogController(i.get<CatalogRepository>())),
   ];
 
   @override
